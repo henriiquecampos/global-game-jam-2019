@@ -10,6 +10,7 @@ export (float) var dash_multiplier = 3.0
 var _velocity = Vector2(0, 0)
 var _is_dashing = false
 var _dash_start = Vector2(0, 0)
+var _snap_velocity = Vector2(0, 0)
 
 var can_dash = true
 
@@ -37,7 +38,8 @@ func _physics_process(delta):
 		_velocity.x = min(abs(_velocity.x) * sign(_velocity.x),
 				max_speed * sign(_velocity.x))
 		_is_dashing = false
-		can_dash = true
+		if is_on_floor():
+			can_dash = true
 	
 	if _is_dashing:
 		if abs(_dash_start.x - position.x) >= dash_length:
@@ -45,10 +47,10 @@ func _physics_process(delta):
 					max_speed * sign(_velocity.x))
 			_is_dashing = false
 			can_dash = false
-		
-	if not is_on_floor():
+	
+	if is_on_floor():
+		_snap_velocity = get_floor_velocity()
+	elif not _is_dashing:
 		_velocity.y += GRAVITY * delta
-	else:
-		_velocity.y = 0.0
-		
+
 	move_and_slide(_velocity, FLOOR_NORMAL)
