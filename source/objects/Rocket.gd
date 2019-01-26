@@ -1,4 +1,4 @@
 extends Area2D
 
-func _on_Timer_timeout():
+func launch():
 	$AnimationPlayer.play("launch")
