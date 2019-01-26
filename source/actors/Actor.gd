@@ -54,3 +54,9 @@ func _physics_process(delta):
 		_velocity.y += GRAVITY * delta
 
 	move_and_slide(_velocity, FLOOR_NORMAL)
+
+func _on_RocketTimer_timeout():
+	set_process(false)
+	set_process_unhandled_input(false)
+	set_process_input(false)
+	set_physics_process(false)
