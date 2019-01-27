@@ -1,3 +1,1 @@
-extends Node2D
-
-export (Color) var color
+extends Polygon2D

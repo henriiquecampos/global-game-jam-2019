@@ -2,7 +2,10 @@
 
 [node name="Platform" type="Node2D"]
 
-[node name="KinematicBody2D" type="KinematicBody2D" parent="." index="0"]
+[node name="KinematicBody2D" type="KinematicBody2D" parent="." index="0" groups=[
+"floor",
+"platform",
+]]
 
 input_pickable = false
 collision_layer = 1

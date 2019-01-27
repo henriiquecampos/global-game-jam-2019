@@ -5,4 +5,8 @@ func _on_body_entered(body):
 		var i = Node.new()
 		body.get_node("Inventory").add_child(i)
 		i.name = name
+		var p = load("res://objects/Pickup.tscn").instance()
+		get_parent().add_child(p)
+		p.position = position
+		p.play()
 		queue_free()
